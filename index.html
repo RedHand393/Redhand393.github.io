@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Red Hand</title>
+    <title>DARK TRIAD</title>
     <style>
         * {
             margin: 0;
@@ -20,10 +20,11 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
-            background-image: 
-                radial-gradient(circle at 20% 80%, rgba(255, 0, 128, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(0, 242, 234, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(255, 0, 128, 0.05) 0%, transparent 50%);
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(139, 0, 0, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(75, 0, 130, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(47, 79, 79, 0.2) 0%, transparent 50%),
+                #000000;
         }
         
         .container {
@@ -32,65 +33,109 @@
             text-align: center;
         }
         
-        .profile-card {
-            background: rgba(22, 22, 22, 0.9);
+        .dark-card {
+            background: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(20px);
             padding: 40px 30px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            border: 1px solid rgba(139, 0, 0, 0.3);
+            box-shadow: 
+                0 0 50px rgba(139, 0, 0, 0.3),
+                0 0 100px rgba(75, 0, 130, 0.2);
             position: relative;
             overflow: hidden;
         }
         
-        .profile-card::before {
+        .dark-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #ff0050, #00f2ea);
+            height: 2px;
+            background: linear-gradient(90deg, #8b0000, #4b0082, #2f4f4f);
+        }
+        
+        .header-title {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #8b0000;
+            text-shadow: 0 0 20px rgba(139, 0, 0, 0.7);
+            letter-spacing: 3px;
+        }
+        
+        .subtitle {
+            font-size: 1.8em;
+            color: #4b0082;
+            margin-bottom: 30px;
+            text-shadow: 0 0 15px rgba(75, 0, 130, 0.5);
+            letter-spacing: 2px;
         }
         
         .avatar {
-            width: 120px;
-            height: 120px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
-            border: 3px solid #ff0050;
-            margin: 0 auto 20px;
-            background: linear-gradient(45deg, #ff0050, #00f2ea);
+            border: 3px solid #8b0000;
+            margin: 20px auto;
+            background: linear-gradient(45deg, #8b0000, #4b0082);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2em;
+            font-size: 2.5em;
+            box-shadow: 0 0 30px rgba(139, 0, 0, 0.5);
         }
         
-        .name {
-            font-size: 2.2em;
+        .name-title {
+            font-size: 2.5em;
             font-weight: bold;
-            margin-bottom: 10px;
-            background: linear-gradient(45deg, #ff0050, #00f2ea);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(255, 0, 128, 0.5);
+            color: #2f4f4f;
+            margin: 20px 0;
+            text-shadow: 0 0 15px rgba(47, 79, 79, 0.5);
+            letter-spacing: 2px;
         }
         
-        .bio-section {
-            margin: 25px 0;
+        .bio-btn {
+            background: linear-gradient(45deg, #8b0000, #4b0082);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            margin: 20px 0;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .bio-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(139, 0, 0, 0.5);
+        }
+        
+        .bio-content {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(47, 79, 79, 0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(47, 79, 79, 0.3);
         }
         
         .info-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(139, 0, 0, 0.2);
             font-size: 1.1em;
         }
         
         .info-label {
-            color: #00f2ea;
+            color: #8b0000;
             font-weight: bold;
         }
         
@@ -99,77 +144,95 @@
         }
         
         .friends-section {
-            margin: 30px 0;
+            margin: 25px 0;
             text-align: left;
         }
         
         .friends-title {
-            color: #ff0050;
+            color: #4b0082;
             font-size: 1.3em;
             margin-bottom: 15px;
             text-align: center;
             font-weight: bold;
         }
         
-        .friend-tag {
+        .friend-link {
             display: inline-block;
-            background: rgba(255, 0, 128, 0.2);
-            color: #ff0050;
+            background: rgba(75, 0, 130, 0.2);
+            color: #9370db;
             padding: 8px 15px;
             margin: 5px;
             border-radius: 15px;
-            border: 1px solid rgba(255, 0, 128, 0.3);
+            border: 1px solid rgba(75, 0, 130, 0.3);
+            text-decoration: none;
             font-size: 0.9em;
             transition: all 0.3s ease;
         }
         
-        .friend-tag:hover {
-            background: rgba(255, 0, 128, 0.3);
+        .friend-link:hover {
+            background: rgba(75, 0, 130, 0.4);
             transform: translateY(-2px);
         }
         
-        .note {
-            margin-top: 20px;
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.9em;
-            font-style: italic;
-        }
-        
         .pulse {
-            animation: pulse 2s infinite;
+            animation: pulse 3s infinite;
         }
         
         @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+            0% { 
+                box-shadow: 0 0 30px rgba(139, 0, 0, 0.5),
+                          0 0 60px rgba(75, 0, 130, 0.3);
+            }
+            50% { 
+                box-shadow: 0 0 40px rgba(139, 0, 0, 0.7),
+                          0 0 80px rgba(75, 0, 130, 0.5);
+            }
+            100% { 
+                box-shadow: 0 0 30px rgba(139, 0, 0, 0.5),
+                          0 0 60px rgba(75, 0, 130, 0.3);
+            }
         }
         
         @media (max-width: 480px) {
-            .profile-card {
+            .dark-card {
                 padding: 30px 20px;
             }
             
-            .name {
-                font-size: 1.8em;
+            .header-title {
+                font-size: 2.2em;
+            }
+            
+            .subtitle {
+                font-size: 1.4em;
+            }
+            
+            .name-title {
+                font-size: 2em;
             }
             
             .avatar {
-                width: 100px;
-                height: 100px;
-                font-size: 1.5em;
+                width: 120px;
+                height: 120px;
+                font-size: 2em;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="profile-card pulse">
+        <div class="dark-card pulse">
+            <div class="header-title">THE</div>
+            <div class="subtitle">DARK TRIAD</div>
+            <div class="header-title">THE</div>
+            <div class="subtitle">DARK TRIAD</div>
+            
             <div class="avatar">🔥</div>
             
-            <div class="name">RED HAND</div>
+            <div class="name-title">RICHAND</div>
             
-            <div class="bio-section">
+            <button class="bio-btn" onclick="toggleBio()">БИОГРАФИЯ</button>
+            
+            <div class="bio-content" id="bioContent">
                 <div class="info-item">
                     <span class="info-label">Имя:</span>
                     <span class="info-value">Red Hand</span>
@@ -189,24 +252,35 @@
                     <span class="info-label">Номер:</span>
                     <span class="info-value">+7??????????</span>
                 </div>
-            </div>
-            
-            <div class="friends-section">
-                <div class="friends-title">👥 Кенты:</div>
-                <div style="text-align: center;">
-                    <span class="friend-tag">@webjremy</span>
-                    <span class="friend-tag">@fuckchock</span>
-                    <span class="friend-tag">@uxcea</span>
-                    <span class="friend-tag">@VegasLonchik</span>
-                    <span class="friend-tag">@mirvavilona</span>
-                    <span class="friend-tag">и много еще кто</span>
+                
+                <div class="friends-section">
+                    <div class="friends-title">КОНТАКТЫ</div>
+                    <div style="text-align: center;">
+                        <a href="https://t.me/webjremy" class="friend-link" target="_blank">webjremy</a>
+                        <a href="https://t.me/fuckchock" class="friend-link" target="_blank">fuckchock</a>
+                        <a href="https://t.me/uxcea" class="friend-link" target="_blank">uxcea</a>
+                        <a href="https://t.me/VegasLonchik" class="friend-link" target="_blank">VegasLonchik</a>
+                        <a href="https://t.me/mirvavilona" class="friend-link" target="_blank">mirvavilona</a>
+                        <span class="friend-link">и другие</span>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="note">
-                💫 Тыкайся если чё
             </div>
         </div>
     </div>
+
+    <script>
+        function toggleBio() {
+            const bioContent = document.getElementById('bioContent');
+            const bioBtn = document.querySelector('.bio-btn');
+            
+            if (bioContent.style.display === 'block') {
+                bioContent.style.display = 'none';
+                bioBtn.textContent = 'БИОГРАФИЯ';
+            } else {
+                bioContent.style.display = 'block';
+                bioBtn.textContent = 'СКРЫТЬ';
+            }
+        }
+    </script>
 </body>
 </html>

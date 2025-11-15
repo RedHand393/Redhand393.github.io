@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DARK TRIAD</title>
+    <title>RED HAND</title>
     <style>
         * {
             margin: 0;
@@ -56,29 +56,12 @@
             background: linear-gradient(90deg, #8b0000, #4b0082, #2f4f4f);
         }
         
-        .header-title {
-            font-size: 3em;
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #8b0000;
-            text-shadow: 0 0 20px rgba(139, 0, 0, 0.7);
-            letter-spacing: 3px;
-        }
-        
-        .subtitle {
-            font-size: 1.8em;
-            color: #4b0082;
-            margin-bottom: 30px;
-            text-shadow: 0 0 15px rgba(75, 0, 130, 0.5);
-            letter-spacing: 2px;
-        }
-        
         .avatar {
             width: 150px;
             height: 150px;
             border-radius: 50%;
             border: 3px solid #8b0000;
-            margin: 20px auto;
+            margin: 0 auto 20px;
             background: linear-gradient(45deg, #8b0000, #4b0082);
             display: flex;
             align-items: center;
@@ -90,13 +73,13 @@
         .name-title {
             font-size: 2.5em;
             font-weight: bold;
-            color: #2f4f4f;
+            color: #8b0000;
             margin: 20px 0;
-            text-shadow: 0 0 15px rgba(47, 79, 79, 0.5);
+            text-shadow: 0 0 15px rgba(139, 0, 0, 0.5);
             letter-spacing: 2px;
         }
         
-        .bio-btn {
+        .telegram-btn {
             background: linear-gradient(45deg, #8b0000, #4b0082);
             color: white;
             border: none;
@@ -107,13 +90,36 @@
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
         
-        .bio-btn:hover {
+        .telegram-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 5px 20px rgba(139, 0, 0, 0.5);
+        }
+        
+        .bio-btn {
+            background: transparent;
+            color: #9370db;
+            border: 2px solid #4b0082;
+            padding: 12px 25px;
+            margin: 10px 0;
+            border-radius: 25px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            width: 100%;
+        }
+        
+        .bio-btn:hover {
+            background: rgba(75, 0, 130, 0.2);
+            transform: translateY(-2px);
         }
         
         .bio-content {
@@ -198,14 +204,6 @@
                 padding: 30px 20px;
             }
             
-            .header-title {
-                font-size: 2.2em;
-            }
-            
-            .subtitle {
-                font-size: 1.4em;
-            }
-            
             .name-title {
                 font-size: 2em;
             }
@@ -221,14 +219,11 @@
 <body>
     <div class="container">
         <div class="dark-card pulse">
-            <div class="header-title">THE</div>
-            <div class="subtitle">DARK TRIAD</div>
-            <div class="header-title">THE</div>
-            <div class="subtitle">DARK TRIAD</div>
-            
             <div class="avatar">🔥</div>
             
             <div class="name-title">RICHAND</div>
+            
+            <a href="https://t.me/redhand_ru" class="telegram-btn" target="_blank">СВЯЗЬ</a>
             
             <button class="bio-btn" onclick="toggleBio()">БИОГРАФИЯ</button>
             
@@ -254,14 +249,14 @@
                 </div>
                 
                 <div class="friends-section">
-                    <div class="friends-title">КОНТАКТЫ</div>
+                    <div class="friends-title">КЕНТЫ</div>
                     <div style="text-align: center;">
-                        <a href="https://t.me/webjremy" class="friend-link" target="_blank">webjremy</a>
+                        <a href="https://t.me/webjeremy" class="friend-link" target="_blank">webjeremy</a>
                         <a href="https://t.me/fuckchock" class="friend-link" target="_blank">fuckchock</a>
                         <a href="https://t.me/uxcea" class="friend-link" target="_blank">uxcea</a>
                         <a href="https://t.me/VegasLonchik" class="friend-link" target="_blank">VegasLonchik</a>
                         <a href="https://t.me/mirvavilona" class="friend-link" target="_blank">mirvavilona</a>
-                        <span class="friend-link">и другие</span>
+                        <span class="friend-link">и много еще кто</span>
                     </div>
                 </div>
             </div>

@@ -84,7 +84,7 @@
             color: white;
             border: none;
             padding: 15px 30px;
-            margin: 20px 0;
+            margin: 10px 0;
             border-radius: 25px;
             font-size: 1.1em;
             font-weight: bold;
@@ -94,11 +94,63 @@
             display: inline-block;
             text-transform: uppercase;
             letter-spacing: 1px;
+            width: 100%;
         }
         
         .telegram-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 5px 20px rgba(139, 0, 0, 0.5);
+        }
+        
+        .adapter-btn {
+            background: transparent;
+            color: #9370db;
+            border: 2px solid #4b0082;
+            padding: 12px 25px;
+            margin: 10px 0;
+            border-radius: 25px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            width: 100%;
+        }
+        
+        .adapter-btn:hover {
+            background: rgba(75, 0, 130, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .adapter-menu {
+            display: none;
+            margin-top: 15px;
+            background: rgba(47, 79, 79, 0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(47, 79, 79, 0.3);
+            padding: 15px;
+        }
+        
+        .menu-btn {
+            background: rgba(75, 0, 130, 0.3);
+            color: #ffffff;
+            border: 1px solid rgba(75, 0, 130, 0.5);
+            padding: 12px 20px;
+            margin: 5px 0;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+        
+        .menu-btn:hover {
+            background: rgba(75, 0, 130, 0.5);
+            transform: translateY(-2px);
         }
         
         .bio-btn {
@@ -225,6 +277,15 @@
             
             <a href="https://t.me/redhand_ru" class="telegram-btn" target="_blank">СВЯЗЬ</a>
             
+            <button class="adapter-btn" onclick="toggleAdapter()">АДАПТЕР</button>
+            
+            <div class="adapter-menu" id="adapterMenu">
+                <a href="https://t.me/perexodnik_hezevyd" class="menu-btn" target="_blank">PROJECT</a>
+                <a href="https://www.tiktok.com/@red_hand2?_t=ZP-90Z5zqc2pqg&_r=1" class="menu-btn" target="_blank">TikTok</a>
+                <a href="https://t.me/+wNJnrngi1PUyNDA5" class="menu-btn" target="_blank">PRICE</a>
+                <a href="https://t.me/repa_redhand" class="menu-btn" target="_blank">REPA</a>
+            </div>
+            
             <button class="bio-btn" onclick="toggleBio()">БИОГРАФИЯ</button>
             
             <div class="bio-content" id="bioContent">
@@ -255,7 +316,7 @@
                         <a href="https://t.me/fuckchock" class="friend-link" target="_blank">fuckchock</a>
                         <a href="https://t.me/uxcea" class="friend-link" target="_blank">uxcea</a>
                         <a href="https://t.me/VegasLonchik" class="friend-link" target="_blank">VegasLonchik</a>
-                        <a href="https://t.me/mirvavilona" class="friend-link" target="_blank">mirvavilona</a>
+                        <a href="https://t.me/MiR_BABiLOHA" class="friend-link" target="_blank">MiR_BABiLOHA</a>
                         <span class="friend-link">и много еще кто</span>
                     </div>
                 </div>
@@ -264,6 +325,19 @@
     </div>
 
     <script>
+        function toggleAdapter() {
+            const adapterMenu = document.getElementById('adapterMenu');
+            const adapterBtn = document.querySelector('.adapter-btn');
+            
+            if (adapterMenu.style.display === 'block') {
+                adapterMenu.style.display = 'none';
+                adapterBtn.textContent = 'АДАПТЕР';
+            } else {
+                adapterMenu.style.display = 'block';
+                adapterBtn.textContent = 'СКРЫТЬ';
+            }
+        }
+        
         function toggleBio() {
             const bioContent = document.getElementById('bioContent');
             const bioBtn = document.querySelector('.bio-btn');

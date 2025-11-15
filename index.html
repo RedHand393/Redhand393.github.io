@@ -13,46 +13,36 @@
         
         body {
             font-family: 'Arial', sans-serif;
+            background: #000000;
             color: #ffffff;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            position: relative;
-            overflow: hidden;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(139, 0, 0, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(75, 0, 130, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 0, 128, 0.3) 0%, transparent 50%),
+                linear-gradient(45deg, #000000, #1a1a2e, #16213e);
+            animation: gradientShift 8s ease infinite;
+            background-size: 400% 400%;
         }
         
-        .video-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-            filter: brightness(0.4);
-        }
-        
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: -1;
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
         
         .container {
             max-width: 500px;
             width: 100%;
             text-align: center;
-            z-index: 1;
         }
         
         .dark-card {
-            background: rgba(10, 10, 10, 0.85);
+            background: rgba(10, 10, 10, 0.9);
             backdrop-filter: blur(20px);
             padding: 40px 30px;
             border-radius: 15px;
@@ -74,27 +64,14 @@
             background: linear-gradient(90deg, #8b0000, #4b0082, #2f4f4f);
         }
         
-        .avatar {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            border: 3px solid #8b0000;
-            margin: 0 auto 20px;
-            background: linear-gradient(45deg, #8b0000, #4b0082);
-            box-shadow: 0 0 30px rgba(139, 0, 0, 0.5);
-            background-image: url('https://i.imgur.com/5G2J8pA.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-        
         .name-title {
-            font-size: 2.5em;
+            font-size: 3em;
             font-weight: bold;
             color: #8b0000;
-            margin: 20px 0;
-            text-shadow: 0 0 15px rgba(139, 0, 0, 0.5);
-            letter-spacing: 2px;
+            margin: 10px 0 30px 0;
+            text-shadow: 0 0 20px rgba(139, 0, 0, 0.7);
+            letter-spacing: 3px;
+            text-transform: uppercase;
         }
         
         .telegram-btn {
@@ -275,27 +252,15 @@
             }
             
             .name-title {
-                font-size: 2em;
-            }
-            
-            .avatar {
-                width: 120px;
-                height: 120px;
+                font-size: 2.2em;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Видео фон -->
-    <video class="video-background" autoplay muted loop playsinline>
-        <source src="https://i.imgur.com/4C9wJhS.mp4" type="video/mp4">
-        Ваш браузер не поддерживает видео.
-    </video>
-    <div class="overlay"></div>
-    
     <div class="container">
         <div class="dark-card pulse">
-            <div class="avatar"></div>
+            <!-- Аватарка убрана -->
             
             <div class="name-title">REDHAND</div>
             
@@ -374,12 +339,6 @@
                 bioBtn.textContent = 'СКРЫТЬ';
             }
         }
-        
-        // Автозапуск видео (на всякий случай)
-        document.addEventListener('DOMContentLoaded', function() {
-            const video = document.querySelector('.video-background');
-            video.play();
-        });
     </script>
 </body>
 </html>

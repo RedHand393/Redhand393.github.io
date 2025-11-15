@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мой сайт на GitHub</title>
+    <title>Red Hand</title>
     <style>
         * {
             margin: 0;
@@ -13,127 +13,198 @@
         
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background: #000000;
+            color: #ffffff;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(255, 0, 128, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 242, 234, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 0, 128, 0.05) 0%, transparent 50%);
         }
         
         .container {
-            max-width: 600px;
+            max-width: 500px;
             width: 100%;
             text-align: center;
         }
         
-        .card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 50px 30px;
+        .profile-card {
+            background: rgba(22, 22, 22, 0.9);
+            backdrop-filter: blur(20px);
+            padding: 40px 30px;
             border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
         }
         
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ff0050, #00f2ea);
         }
         
-        .subtitle {
-            font-size: 1.2em;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-        
-        .features {
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid #ff0050;
+            margin: 0 auto 20px;
+            background: linear-gradient(45deg, #ff0050, #00f2ea);
             display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin: 30px 0;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
         }
         
-        .feature {
-            background: rgba(255, 255, 255, 0.15);
-            padding: 15px;
-            border-radius: 10px;
+        .name {
+            font-size: 2.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #ff0050, #00f2ea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(255, 0, 128, 0.5);
+        }
+        
+        .bio-section {
+            margin: 25px 0;
+        }
+        
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             font-size: 1.1em;
         }
         
-        .buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 30px;
-        }
-        
-        .btn {
-            padding: 12px 25px;
-            background: white;
-            color: #667eea;
-            text-decoration: none;
-            border-radius: 25px;
+        .info-label {
+            color: #00f2ea;
             font-weight: bold;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
         }
         
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        .info-value {
+            color: #ffffff;
         }
         
-        .success-badge {
-            background: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 20px;
+        .friends-section {
+            margin: 30px 0;
+            text-align: left;
+        }
+        
+        .friends-title {
+            color: #ff0050;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .friend-tag {
             display: inline-block;
-            margin-bottom: 20px;
-            font-weight: bold;
+            background: rgba(255, 0, 128, 0.2);
+            color: #ff0050;
+            padding: 8px 15px;
+            margin: 5px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 0, 128, 0.3);
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+        
+        .friend-tag:hover {
+            background: rgba(255, 0, 128, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .note {
+            margin-top: 20px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9em;
+            font-style: italic;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
         
         @media (max-width: 480px) {
-            .card {
+            .profile-card {
                 padding: 30px 20px;
             }
             
-            h1 {
-                font-size: 2em;
+            .name {
+                font-size: 1.8em;
             }
             
-            .buttons {
-                flex-direction: column;
+            .avatar {
+                width: 100px;
+                height: 100px;
+                font-size: 1.5em;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="card">
-            <div class="success-badge">✅ САЙТ АКТИВЕН</div>
-            <h1>Добро пожаловать!</h1>
-            <p class="subtitle">Мой первый сайт на GitHub Pages</p>
+        <div class="profile-card pulse">
+            <div class="avatar">🔥</div>
             
-            <div class="features">
-                <div class="feature">🚀 Размещено бесплатно</div>
-                <div class="feature">📱 Адаптивный дизайн</div>
-                <div class="feature">⚡ Быстрая загрузка</div>
+            <div class="name">RED HAND</div>
+            
+            <div class="bio-section">
+                <div class="info-item">
+                    <span class="info-label">Имя:</span>
+                    <span class="info-value">Red Hand</span>
+                </div>
+                
+                <div class="info-item">
+                    <span class="info-label">Возраст:</span>
+                    <span class="info-value">???</span>
+                </div>
+                
+                <div class="info-item">
+                    <span class="info-label">Страна:</span>
+                    <span class="info-value">🇷🇺 Россия</span>
+                </div>
+                
+                <div class="info-item">
+                    <span class="info-label">Номер:</span>
+                    <span class="info-value">+7??????????</span>
+                </div>
             </div>
             
-            <div class="buttons">
-                <a href="#" class="btn">📞 Контакты</a>
-                <a href="#" class="btn">💼 Портфолио</a>
-                <a href="#" class="btn">📧 Написать мне</a>
+            <div class="friends-section">
+                <div class="friends-title">👥 Кенты:</div>
+                <div style="text-align: center;">
+                    <span class="friend-tag">@webjremy</span>
+                    <span class="friend-tag">@fuckchock</span>
+                    <span class="friend-tag">@uxcea</span>
+                    <span class="friend-tag">@VegasLonchik</span>
+                    <span class="friend-tag">@mirvavilona</span>
+                    <span class="friend-tag">и много еще кто</span>
+                </div>
             </div>
             
-            <div style="margin-top: 30px; font-size: 0.9em; opacity: 0.8;">
-                <p>Создано с ❤️ через GitHub Pages</p>
+            <div class="note">
+                💫 Тыкайся если чё
             </div>
         </div>
     </div>

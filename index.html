@@ -3,398 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bebrik Tool - OSINT Search</title>
+    <title>Bebrik Tool - OSINT API</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-            color: #333;
+            min-height: 100vh; padding: 20px; color: #333;
         }
-        
         .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 900px; margin: 0 auto; background: white;
+            border-radius: 15px; padding: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.2);
         }
-        
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .header h1 {
-            font-size: 2.5em;
-            color: #333;
-            margin-bottom: 10px;
-        }
-        
-        .header .subtitle {
-            font-size: 1.2em;
-            color: #666;
-        }
-        
-        .api-section {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            border-left: 4px solid #667eea;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #333;
-        }
-        
-        input, select, button {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 16px;
-            margin-bottom: 10px;
-        }
-        
-        input:focus, select:focus {
-            border-color: #667eea;
-            outline: none;
-        }
-        
-        button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-            transition: transform 0.2s;
-        }
-        
-        button:hover {
-            transform: translateY(-2px);
-        }
-        
-        .search-types {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 10px;
-            margin: 20px 0;
-        }
-        
-        .search-type {
-            background: #f8f9fa;
-            border: 2px solid #ddd;
-            padding: 15px;
-            text-align: center;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .search-type:hover {
-            border-color: #667eea;
-            background: #e9ecef;
-        }
-        
-        .search-type.active {
-            background: #667eea;
-            color: white;
-            border-color: #667eea;
-        }
-        
-        .result-section {
-            margin-top: 30px;
-            display: none;
-        }
-        
-        .result-box {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 20px;
-            margin-top: 15px;
-            max-height: 400px;
-            overflow-y: auto;
-        }
-        
-        pre {
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            font-family: 'Courier New', monospace;
-        }
-        
-        .loading {
-            display: none;
-            text-align: center;
-            padding: 20px;
-        }
-        
-        .spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #667eea;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 10px;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .error {
-            background: #f8d7da;
-            color: #721c24;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 10px 0;
-            border-left: 4px solid #dc3545;
-        }
-        
-        .success {
-            background: #d4edda;
-            color: #155724;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 10px 0;
-            border-left: 4px solid #28a745;
-        }
-        
-        .copy-btn {
-            background: #28a745;
-            width: auto;
-            padding: 8px 15px;
-            font-size: 14px;
-            margin-top: 10px;
-        }
-        
-        .instructions {
-            background: #fff3cd;
-            border: 1px solid #ffeaa7;
-            border-radius: 8px;
-            padding: 15px;
-            margin: 20px 0;
-        }
+        .header { text-align: center; margin-bottom: 30px; }
+        .header h1 { font-size: 2.8em; color: #667eea; margin-bottom: 10px; }
+        .api-section { background: #f8f9fa; border-radius: 8px; padding: 25px; margin: 20px 0; border-left: 4px solid #667eea; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-weight: bold; }
+        input, button { width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px; font-size: 16px; margin-bottom: 10px; }
+        button { background: #667eea; color: white; border: none; cursor: pointer; font-weight: bold; }
+        button:hover { background: #5a6fd8; }
+        .result { background: #2d3436; color: #dfe6e9; padding: 15px; border-radius: 8px; margin-top: 15px; }
+        pre { white-space: pre-wrap; }
+        .success { background: #d4edda; color: #155724; padding: 10px; border-radius: 5px; margin: 10px 0; }
+        .error { background: #f8d7da; color: #721c24; padding: 10px; border-radius: 5px; margin: 10px 0; }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
             <h1>🦦 Bebrik Tool</h1>
-            <div class="subtitle">OSINT Search Interface</div>
-        </div>
-
-        <div class="instructions">
-            <h3>📋 Как использовать:</h3>
-            <ol>
-                <li>Получите API ключ в Telegram боте: <strong>@BebrikToolbot</strong></li>
-                <li>Введите API ключ ниже</li>
-                <li>Выберите тип поиска</li>
-                <li>Введите запрос и нажмите "Поиск"</li>
-            </ol>
+            <p>OSINT API Key Generator</p>
         </div>
 
         <div class="api-section">
+            <h3>🔑 Генератор API ключей</h3>
             <div class="form-group">
-                <label for="apiKey">🔑 API Key:</label>
-                <input type="text" id="apiKey" placeholder="Введите ваш API ключ..." />
-                <small>Пример: BEBRIK_1a2b3c4d5e6f7g8h</small>
+                <label>Имя пользователя:</label>
+                <input type="text" id="username" placeholder="Введите имя пользователя">
             </div>
+            <button onclick="generateApiKey()">Сгенерировать API ключ</button>
+            <div id="apiKeyResult"></div>
+        </div>
+
+        <div class="api-section">
+            <h3>📚 Инструкция для утилит</h3>
+            <p>После получения API ключа, используйте его в своих утилитах:</p>
             
-            <div class="form-group">
-                <label for="apiUrl">🌐 API URL:</label>
-                <input type="text" id="apiUrl" value="http://localhost:5000/api/v1" placeholder="URL вашего API сервера" />
-            </div>
+            <h4>Python пример:</h4>
+            <pre>
+import requests
+import hashlib
+import time
+
+class BebrikAPI:
+    def __init__(self, api_key):
+        self.api_key = api_key
+        
+    def search_vk(self, query):
+        # Ваша реализация поиска VK
+        # Используйте API ключ для доступа к вашим методам
+        signature = hashlib.md5(f"{self.api_key}{query}{int(time.time())}".encode()).hexdigest()
+        
+        # Здесь ваш код поиска
+        return {
+            "status": "success",
+            "query": query,
+            "signature": signature
+        }
+
+# Использование
+api = BebrikAPI("ВАШ_API_КЛЮЧ")
+result = api.search_vk("durov")
+print(result)
+            </pre>
+
+            <h4>Формат API ключа:</h4>
+            <code>BEBRIK_XXXXXXXXXXXXXXX</code>
+            <p>Используйте этот ключ в ваших утилитах для идентификации.</p>
         </div>
 
-        <div class="form-group">
-            <label>🔍 Тип поиска:</label>
-            <div class="search-types">
-                <div class="search-type active" onclick="selectSearchType('vk')">🔍 VK</div>
-                <div class="search-type" onclick="selectSearchType('tiktok')">🎵 TikTok</div>
-                <div class="search-type" onclick="selectSearchType('phone')">📞 Телефон</div>
-                <div class="search-type" onclick="selectSearchType('ip')">🌐 IP</div>
-                <div class="search-type" onclick="selectSearchType('ok')">👥 OK.ru</div>
-                <div class="search-type" onclick="selectSearchType('email')">📧 Email</div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label id="searchLabel" for="searchQuery">Поисковый запрос VK:</label>
-            <input type="text" id="searchQuery" placeholder="Введите username, ID или ссылку..." />
-        </div>
-
-        <button onclick="performSearch()">🚀 Выполнить поиск</button>
-
-        <div class="loading" id="loading">
-            <div class="spinner"></div>
-            <p>Выполняется поиск...</p>
-        </div>
-
-        <div class="result-section" id="resultSection">
-            <h3>📋 Результаты поиска:</h3>
-            <div id="statusMessage"></div>
-            <div class="result-box">
-                <pre id="searchResult">{}</pre>
-            </div>
-            <button class="copy-btn" onclick="copyResults()">📋 Копировать результаты</button>
+        <div class="api-section">
+            <h3>🔧 Для разработчиков утилит</h3>
+            <p>В ваших утилитах реализуйте проверку API ключей через:</p>
+            <ul>
+                <li>Локальную базу ключей</li>
+                <li>Проверку формата ключа</li>
+                <li>Систему лимитов на основе ключа</li>
+            </ul>
+            
+            <h4>Пример проверки ключа:</h4>
+            <pre>
+def validate_api_key(api_key):
+    if not api_key.startswith('BEBRIK_'):
+        return False
+    if len(api_key) != 24:  # BEBRIK_ + 16 символов
+        return False
+    return True
+            </pre>
         </div>
     </div>
 
     <script>
-        let currentSearchType = 'vk';
-        const searchLabels = {
-            'vk': 'Поисковый запрос VK:',
-            'tiktok': 'Username TikTok:',
-            'phone': 'Номер телефона:',
-            'ip': 'IP адрес:',
-            'ok': 'Телефон или email OK.ru:',
-            'email': 'Email адрес:'
-        };
-
-        const placeholders = {
-            'vk': 'durov, id1, https://vk.com/durov',
-            'tiktok': 'username',
-            'phone': '+79123456789',
-            'ip': '192.168.1.1',
-            'ok': '+79123456789 или email@example.com',
-            'email': 'example@gmail.com'
-        };
-
-        function selectSearchType(type) {
-            currentSearchType = type;
-            
-            // Обновляем активную кнопку
-            document.querySelectorAll('.search-type').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-            
-            // Обновляем label и placeholder
-            document.getElementById('searchLabel').textContent = searchLabels[type];
-            document.getElementById('searchQuery').placeholder = placeholders[type];
-        }
-
-        async function performSearch() {
-            const apiKey = document.getElementById('apiKey').value.trim();
-            const apiUrl = document.getElementById('apiUrl').value.trim();
-            const query = document.getElementById('searchQuery').value.trim();
-
-            if (!apiKey) {
-                showError('Введите API ключ');
+        function generateApiKey() {
+            const username = document.getElementById('username').value.trim();
+            if (!username) {
+                showError('apiKeyResult', 'Введите имя пользователя');
                 return;
             }
 
-            if (!query) {
-                showError('Введите поисковый запрос');
-                return;
+            // Генерация ключа
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let key = 'BEBRIK_';
+            for (let i = 0; i < 16; i++) {
+                key += chars.charAt(Math.floor(Math.random() * chars.length));
             }
-
-            // Показываем загрузку
-            document.getElementById('loading').style.display = 'block';
-            document.getElementById('resultSection').style.display = 'none';
-            document.getElementById('statusMessage').innerHTML = '';
-
-            try {
-                const endpoints = {
-                    'vk': '/vk/search',
-                    'tiktok': '/tiktok/search',
-                    'phone': '/phone/search',
-                    'ip': '/ip/search',
-                    'ok': '/ok/search',
-                    'email': '/email/search'
-                };
-
-                const endpoint = endpoints[currentSearchType];
-                const url = `${apiUrl}${endpoint}`;
-
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${apiKey}`
-                    },
-                    body: JSON.stringify({ query: query })
-                });
-
-                const data = await response.json();
-
-                // Скрываем загрузку
-                document.getElementById('loading').style.display = 'none';
-                document.getElementById('resultSection').style.display = 'block';
-
-                if (data.status === 'success') {
-                    showSuccess('Поиск выполнен успешно!');
-                    document.getElementById('searchResult').textContent = JSON.stringify(data, null, 2);
-                } else {
-                    showError(`Ошибка: ${data.message || 'Неизвестная ошибка'}`);
-                    document.getElementById('searchResult').textContent = JSON.stringify(data, null, 2);
-                }
-
-            } catch (error) {
-                document.getElementById('loading').style.display = 'none';
-                document.getElementById('resultSection').style.display = 'block';
-                showError(`Ошибка соединения: ${error.message}`);
-                document.getElementById('searchResult').textContent = JSON.stringify({
-                    error: error.message,
-                    status: 'connection_failed'
-                }, null, 2);
-            }
-        }
-
-        function showError(message) {
-            document.getElementById('statusMessage').innerHTML = `<div class="error">❌ ${message}</div>`;
-        }
-
-        function showSuccess(message) {
-            document.getElementById('statusMessage').innerHTML = `<div class="success">✅ ${message}</div>`;
-        }
-
-        function copyResults() {
-            const resultText = document.getElementById('searchResult').textContent;
-            navigator.clipboard.writeText(resultText).then(() => {
-                alert('Результаты скопированы в буфер обмена!');
-            });
-        }
-
-        // Загрузка сохраненных данных
-        document.addEventListener('DOMContentLoaded', function() {
-            const savedApiKey = localStorage.getItem('bebrikApiKey');
-            const savedApiUrl = localStorage.getItem('bebrikApiUrl');
             
-            if (savedApiKey) {
-                document.getElementById('apiKey').value = savedApiKey;
-            }
-            if (savedApiUrl) {
-                document.getElementById('apiUrl').value = savedApiUrl;
-            }
-        });
+            document.getElementById('apiKeyResult').innerHTML = `
+                <div class="success">
+                    <strong>✅ API ключ создан!</strong><br>
+                    <code>${key}</code><br>
+                    <small>Скопируйте и сохраните этот ключ. Используйте его в ваших утилитах.</small>
+                    <br><br>
+                    <strong>Пример использования:</strong>
+                    <pre>api_key = "${key}"</pre>
+                </div>
+            `;
+        }
 
-        // Сохранение данных при изменении
-        document.getElementById('apiKey').addEventListener('input', function() {
-            localStorage.setItem('bebrikApiKey', this.value);
-        });
-
-        document.getElementById('apiUrl').addEventListener('input', function() {
-            localStorage.setItem('bebrikApiUrl', this.value);
-        });
+        function showError(elementId, message) {
+            document.getElementById(elementId).innerHTML = `
+                <div class="error">❌ ${message}</div>
+            `;
+        }
     </script>
 </body>
 </html>
